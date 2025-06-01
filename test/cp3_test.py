@@ -2,10 +2,10 @@ from selenium.webdriver.common.by import By
 
 def test_add_to_wish_list(pages):
     home_page, _, _, login_page = pages
-    # login_page.go_to_signup_page()
-    # login_page.signup("Test", "User", "asd@asd.ru", "qweasz1234")
-    login_page.go_to_login_page()
-    login_page.login("asd@asd.ru", "qweasz1234")
+    login_page.go_to_signup_page()
+    login_page.signup("Test", "User", "asd@asd.ru", "qweasz1234")
+    # login_page.go_to_login_page()
+    # login_page.login("asd@asd.ru", "qweasz1234")
     home_page.go_to_home()
     home_page.add_to_wish_list_from_home("MacBook", 400)
     home_page.close_alert()
