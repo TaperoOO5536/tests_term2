@@ -1,6 +1,5 @@
 from .Base_page import BasePage
 from selenium.webdriver.common.by import By
-from time import sleep
 
 class HomePage(BasePage):
   catalog = {
@@ -16,9 +15,32 @@ class HomePage(BasePage):
 
   def search(self, value):
     self.send_keys(By.NAME, "search", value)
-    sleep(1)
     self.click(By.CSS_SELECTOR, '.btn.btn-light.btn-lg')
-    sleep(1)
+  
+  def go_to_home(self):
+    self.click(By.XPATH, "//a[contains(@href, 'common/home')]")
 
-  def navigate_to(self, url):
-    self.driver.get(url)
+  def go_to_wish_list(self):
+    self.click(By.XPATH, '//span[contains(text(), "Wish List")]')
+
+  def go_to_cart(self):
+    self.click(By.XPATH, '//span[contains(text(), "Shopping Cart")]')
+
+  def add_to_wish_list_from_home(self, product_name, value=0):
+    products_list = self.driver.find_elements(By.XPATH, "//div[@class='product-thumb']")
+    for product in products_list:
+      name = product.find_element(By.XPATH, ".//h4/a").text
+      if name == product_name:
+        add_to_wish_list_button = product.find_element(By.XPATH, ".//button[@title='Add to Wish List']")
+        self.scroll_down(value)
+        add_to_wish_list_button.click()
+        self.scroll_up(value)
+
+  def go_to_category(self, category_name):
+    self.click(By.XPATH, f"//a[contains(@href, '{self.catalog[category_name]}')]")
+    category_button = self.driver.find_element(By.XPATH, f"//a[contains(text(), 'Show All')]")
+    if category_button.is_displayed():
+      category_button.click()
+  
+
+        

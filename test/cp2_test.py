@@ -64,6 +64,7 @@ def test_pc_category_is_empty(driver):
     sleep(1)
     assert len(driver.find_elements(By.XPATH, "//p[contains(text(), 'There are no products to list in this category.')]")) != 0, 'PC list is not empty'
 
+
 def test_registration(driver):
     driver.get("http://localhost:8080")
     sleep(2)
@@ -90,8 +91,10 @@ def test_registration(driver):
     sleep(1)
     driver.find_element(
         By.CSS_SELECTOR, 
-        "#input-password").send_keys("qwerty")
+        "#input-password").send_keys("qweasz1234")
     sleep(1)
+    driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", driver.find_element(By.NAME, "agree"))
+    sleep(0.2)
     driver.find_element(By.NAME, "agree").click()
     sleep(1)
     driver.find_element(
