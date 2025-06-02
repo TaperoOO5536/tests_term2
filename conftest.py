@@ -1,5 +1,7 @@
 import pytest
+import allure
 from selenium import webdriver
+import json
 
 def pytest_addoption(parser):
     parser.addoption("--browser", default="chrome", choices=["chrome", "firefox"])
@@ -18,6 +20,13 @@ def driver(request):
     else:
         raise NotImplementedError(f"Browser {browser_name} is not implemented.")
     driver.get("http://localhost:8080")
+
+    allure.attach(
+        name=driver.session_id,
+        body=json.dumps(driver.capabilities),
+        attachment_type=allure.attachment_type.JSON,
+    )
+
     yield driver
     driver.quit()
 
