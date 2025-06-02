@@ -33,7 +33,7 @@ class ProductPage(BasePage):
   def write_review(self, text, rating=5):
     self.scroll_down(100)
     self.click(By.XPATH, "//a[contains(text(), 'Write a review')]")
-    self.scroll_down(700)
+    self.scroll_down(550)
     self.click(By.CSS_SELECTOR, "#input-text")
     self.send_keys(By.ID, "input-text", text)
     self.click(By.XPATH, f"//input[@name='rating' and @value='{rating}']")
