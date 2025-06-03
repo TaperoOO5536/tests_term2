@@ -12,6 +12,17 @@ class HomePage(BasePage):
     "cameras": "http://localhost:8080/en-gb/catalog/cameras",
     "mp3-players": "http://localhost:8080/en-gb/catalog/mp3-players"
   }
+# for selenoid
+  # catalog = {
+  #   "desktops": "http://host.docker.internal:8080/en-gb/catalog/desktops",
+  #   "laptop-notebook": "http://host.docker.internal:8080/en-gb/catalog/laptop-notebook",
+  #   "component": "http://host.docker.internal:8080/en-gb/catalog/component",
+  #   "tablet": "http://host.docker.internal:8080/en-gb/catalog/tablet",
+  #   "software": "http://host.docker.internal:8080/en-gb/catalog/software",
+  #   "smartphone": "http://host.docker.internal:8080/en-gb/catalog/smartphone",
+  #   "cameras": "http://host.docker.internal:8080/en-gb/catalog/cameras",
+  #   "mp3-players": "http://host.docker.internal:8080/en-gb/catalog/mp3-players"
+  # }
 
   def search(self, value):
     self.send_keys(By.NAME, "search", value)
@@ -42,5 +53,3 @@ class HomePage(BasePage):
     if category_button.is_displayed():
       category_button.click()
   
-
-        

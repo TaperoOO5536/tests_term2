@@ -2,6 +2,9 @@ import pytest
 import allure
 from selenium import webdriver
 import json
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 def pytest_addoption(parser):
     parser.addoption("--browser", default="chrome", choices=["chrome", "firefox"])
@@ -12,6 +15,21 @@ def pytest_addoption(parser):
 @pytest.fixture(scope="module")
 def driver(request):
     browser_name = request.config.getoption("--browser")
+
+# for selenoid
+#     options = Options()
+#     options.set_capability("browserName", "chrome")
+#     options.set_capability("browserVersion", "latest")
+#     options.set_capability("selenoid:options", {
+#     "enableVNC": True,
+#     "enableVideo": True,
+#     "enableLog": True
+# })
+
+#     driver = webdriver.Remote(
+#         command_executor="http://localhost:4444/wd/hub",
+#         options=options
+#     )
 
     if browser_name == "chrome":
         driver = webdriver.Chrome()
@@ -52,6 +70,13 @@ def page(request):
 @pytest.fixture(autouse=True)
 def setup(pages, page):
     home_page, _, _, _, admin_page = pages
+
+# for selenoid
+    # if page == "admin":
+    #     admin_page.navigate_to("http://host.docker.internal:8080/administration/")
+    #     admin_page.login()
+    # elif page == "home":
+    #     home_page.navigate_to("http://host.docker.internal:8080")
 
     if page == "admin":
         admin_page.navigate_to("http://localhost:8080/administration/")

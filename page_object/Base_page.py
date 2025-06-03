@@ -32,3 +32,8 @@ class BasePage:
     
   def close_alert(self):
     self.click(By.CSS_SELECTOR, ".btn-close")
+
+  def change_url(self):
+    current_url = self.driver.current_url
+    new_url = current_url.replace('localhost', 'host.docker.internal')
+    self.driver.get(new_url)

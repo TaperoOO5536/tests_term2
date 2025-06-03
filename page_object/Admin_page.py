@@ -31,13 +31,16 @@ class AdminPage(BasePage):
   }
 
   def login(self):
+    WebDriverWait(self.driver, 10).until(
+            lambda d: d.execute_script("return document.readyState") == "complete"
+        )
+    sleep(3)
     self.send_keys(By.NAME, "username", "user")
     self.send_keys(By.NAME, "password", "bitnami")
     self.click(By.CSS_SELECTOR, ".btn.btn-primary")
     WebDriverWait(self.driver, 10).until(
     lambda d: d.execute_script("return document.readyState") == "complete"
     )
-
 
   def click_menu_item(self, menu_item):
     WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH, f"//a[@href='#collapse-{self.menu[menu_item]}']")))
