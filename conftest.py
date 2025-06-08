@@ -55,13 +55,19 @@ def pages(driver):
     from page_object.Cart_page import CartPage
     from page_object.Login_page import LoginPage
     from page_object.Admin_page import AdminPage
+    from page_object.Contact_us_page import ContactPage
+    from page_object.Account_page import AccountPage
+    from page_object.Gift_certificate_page import GiftCertificatePage
 
     home_page = HomePage(driver)
     product_page = ProductPage(driver)
     cart_page = CartPage(driver)
     login_page = LoginPage(driver)
     admin_page = AdminPage(driver)
-    return home_page, product_page, cart_page, login_page, admin_page
+    contact_page = ContactPage(driver)
+    account_page = AccountPage(driver)
+    gift_certificate_page = GiftCertificatePage(driver)
+    return home_page, product_page, cart_page, login_page, admin_page, contact_page, account_page, gift_certificate_page
 
 @pytest.fixture(scope="function")
 def page(request):
@@ -69,7 +75,7 @@ def page(request):
 
 @pytest.fixture(autouse=True)
 def setup(pages, page):
-    home_page, _, _, _, admin_page = pages
+    home_page, _, _, _, admin_page, _, _, _ = pages
 
 # for selenoid
     # if page == "admin":

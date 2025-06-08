@@ -52,4 +52,15 @@ class HomePage(BasePage):
     category_button = self.driver.find_element(By.XPATH, f"//a[contains(text(), 'Show All')]")
     if category_button.is_displayed():
       category_button.click()
+
+  def add_to_compare_from_home(self, product_name, value=0):
+    products_list = self.driver.find_elements(By.XPATH, "//div[@class='product-thumb']")
+    for product in products_list:
+      name = product.find_element(By.XPATH, ".//h4/a").text
+      if name == product_name:
+        add_to_compare_button = product.find_element(By.XPATH, ".//button[@title='Compare this Product']")
+        self.scroll_down(value)
+        add_to_compare_button.click()
+        self.scroll_up(value)
+        break
   

@@ -6,7 +6,7 @@ import pytest
 @allure.title("Add MacBook to wish list")
 @pytest.mark.parametrize("page", ["home"], indirect=True)
 def test_add_to_wish_list(pages):
-    home_page, _, _, login_page, _ = pages
+    home_page, _, _, login_page, _, _, _, _ = pages
     login_page.go_to_signup_page()
     login_page.signup("Test", "User", "asd@asd.ru", "qweasz1234")
     # login_page.go_to_login_page()
@@ -21,7 +21,7 @@ def test_add_to_wish_list(pages):
 @allure.title("Add camera 'Canon EOS 5D' to shopping cart")
 @pytest.mark.parametrize("page", ["home"], indirect=True)
 def test_add_camera_to_cart(pages):
-    home_page, product_page, _, _, _ = pages
+    home_page, product_page, _, _, _, _, _, _ = pages
     home_page.go_to_home()
     product_page.go_to_product_page("Canon EOS 5D", 700)
     product_page.choose_color("Red")
@@ -34,7 +34,7 @@ def test_add_camera_to_cart(pages):
 @allure.title("Add tablet 'Samsung Galaxy Tab 10.1' to shopping cart")
 @pytest.mark.parametrize("page", ["home"], indirect=True)
 def test_add_tablet_to_cart(pages):
-    home_page, product_page, _, _, _ = pages
+    home_page, product_page, _, _, _, _, _, _ = pages
     home_page.go_to_category("tablet")
     product_page.go_to_product_page("Samsung Galaxy Tab 10.1")
     product_page.add_to_cart()
@@ -46,7 +46,7 @@ def test_add_tablet_to_cart(pages):
 @allure.title("Add phone 'HTC Touch HD' to shopping cart")
 @pytest.mark.parametrize("page", ["home"], indirect=True)
 def test_add_htc_phone_to_cart(pages):
-    home_page, product_page, _, _, _ = pages
+    home_page, product_page, _, _, _, _, _, _ = pages
     home_page.go_to_category("smartphone")
     product_page.go_to_product_page("HTC Touch HD")
     product_page.add_to_cart()
@@ -58,7 +58,7 @@ def test_add_htc_phone_to_cart(pages):
 @allure.title("Write review for iPhone")
 @pytest.mark.parametrize("page", ["home"], indirect=True)
 def test_write_review(pages):
-    home_page, product_page, _, _,_ = pages
+    home_page, product_page, _, _, _, _, _, _ = pages
     home_page.search("iPhone")
     product_page.go_to_product_page("iPhone", 200)
     product_page.write_review("This is a great phone!", 5)

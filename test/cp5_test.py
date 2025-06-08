@@ -9,7 +9,7 @@ from time import sleep
 @allure.title("Add Devices category")
 @pytest.mark.parametrize("page", ["admin"], indirect=True)
 def test_add_devise_category(pages):
-  _, _, _, _, admin_page = pages
+  _, _, _, _, admin_page, _, _, _ = pages
   admin_page.click_menu_item("Catalog")
   admin_page.click_catalog_submenu_item("Categories")
   admin_page.click_add_button()
@@ -22,7 +22,7 @@ def test_add_devise_category(pages):
 @allure.title("Add two mouses and two keyboards to Devices category")
 @pytest.mark.parametrize("page", ["admin"], indirect=True)
 def test_add_devices(pages):
-  _, _, _, _, admin_page = pages
+  _, _, _, _, admin_page, _, _, _ = pages
 
   products_to_add = [("mouse_one", "500"), ("mouse_two", "1500"), ("keyboard_one", "3300"), ("keyboard_two", "1300")]
 
@@ -41,7 +41,7 @@ def test_add_devices(pages):
 @allure.title("Delete mouse and keyboard from Devices category")
 @pytest.mark.parametrize("page", ["admin"], indirect=True)
 def test_delete_keyboard_and_mouse(pages):
-  _, _, _, _, admin_page = pages
+  _, _, _, _, admin_page, _, _, _ = pages
 
   products_to_delete = ['mouse_one', 'keyboard_two']
 
